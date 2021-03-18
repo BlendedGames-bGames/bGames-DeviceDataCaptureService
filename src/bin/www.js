@@ -83,14 +83,15 @@ const io = require("socket.io")(server, {
 io  
   .on("connection", (socket) => {
     console.log("New player")
-    socket.emit("welcome", "Bienvenido captura de datos en tiempo real!")
+    socket.emit("welcome", {message:"Bienvenido captura de datos en tiempo real!"})
 
     socket.on("joinRoom", (room) => {
       socket.join(room)
-      return socket.emit("success", "Se a unido a su room personal")
+      return socket.emit("success", {message:"Se a unido a su room personal"} )
     })
     socket.on("message", (payload) => {
-      socket.to(payload.id_player).emit("message", payload.data)
+      console.log(payload)
+      //socket.to(payload.id_player).emit("message", payload.data)
 
     })
     socket.on("leaveRoom", (room) => {
