@@ -32,6 +32,9 @@ store_capture.get("/", (req,res) =>{
 
 });
 
+store_capture.get("/test", (req,res) =>{
+    res.status(200).json({ message: 'works'})
+});
 
 
 /*
