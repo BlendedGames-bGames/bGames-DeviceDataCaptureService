@@ -4,6 +4,9 @@ import { testEnvironmentVariable } from '../settings';
 
 import {standardHost} from '../urls'
 
+//FOR ASYNC AWAIT ROUTES
+const wrap = fn => (...args) => fn(...args).catch(args[2])
+
 
 var bodyParser =require('body-parser');
 
