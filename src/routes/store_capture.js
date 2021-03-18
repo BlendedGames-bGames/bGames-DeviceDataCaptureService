@@ -1,5 +1,5 @@
 const express = require('express');
-const store_caputre = express.Router();
+const store_capture = express.Router();
 import { testEnvironmentVariable } from '../settings';
 
 import {standardHost} from '../urls'
@@ -23,7 +23,7 @@ var jsonParser = bodyParser.json()
     }
 */
 
-store_caputre.get("/", (req,res) =>{
+store_capture.get("/", (req,res) =>{
     res.status(200).json({ message: testEnvironmentVariable})
 
 
@@ -37,7 +37,7 @@ Output: Void (stores the data in the db)
 Description: Calls the b-Games-ApirestPostAtt service 
 This function is used by devices that can post directly to the cloud service like mobile phones
 */
-capture_data.post('/capture_external_data', jsonParser,  wrap(async(req,res,next) =>{
+store_capture.post('/capture_external_data', jsonParser,  wrap(async(req,res,next) =>{
     
     var post_data = req.body;
     /*
