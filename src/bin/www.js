@@ -102,9 +102,9 @@ io
       found = rawPayLoad.match(regex1);
       found = found[0].match(regex2);
       bool = found === null ? false : true;
-      if(bool && initialNote === found[0]){
+      if(bool && initialNote === found[0] && found[0] !== 'F' && found[0] !== 'F#' && found[0] !== 'G'){
         counter++
-        if(counter === 30){
+        if(counter === 60){
           console.log('Se mantuvo la nota musical: ')
           console.log(found[0])
           //socket.to(payload.id_player).emit("message", payload.data)
