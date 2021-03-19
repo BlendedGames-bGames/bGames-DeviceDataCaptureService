@@ -80,6 +80,7 @@ let regex2 =   /[CDEFGAB]+\#?/g
 let found
 let initialNote = ''
 let counter = 0
+let bool = false
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
@@ -100,8 +101,8 @@ io
       rawPayLoad = payload;
       found = rawPayLoad.match(regex1);
       found = found[0].match(regex2);
-      console.log(found[0]);
-      if(initialNote === found[0]){
+      bool = found === null ? false : true;
+      if(bool && initialNote === found[0]){
         counter++
         if(counter === 4){
           console.log('Se mantuvo la nota musical: ')
