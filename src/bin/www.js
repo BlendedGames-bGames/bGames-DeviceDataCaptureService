@@ -112,7 +112,7 @@ io
         }
       }
       else{
-        initialNote = found[0]
+        initialNote = !bool ? '' : found[0]
       }
       
       //socket.to(payload.id_player).emit("message", payload.data)
