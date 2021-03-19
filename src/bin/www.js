@@ -104,7 +104,7 @@ io
       bool = found === null ? false : true;
       if(bool && initialNote === found[0]){
         counter++
-        if(counter === 4){
+        if(counter === 30){
           console.log('Se mantuvo la nota musical: ')
           console.log(found[0])
           //socket.to(payload.id_player).emit("message", payload.data)
