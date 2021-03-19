@@ -74,6 +74,12 @@ server.listen(port, () => {
 server.on('error', onError);
 server.on('listening', onListening);
 
+let rawPayLoad
+let regex1 =  /\(.*\)/g;
+let regex2 =   /[CDEFGAB]+\#?/g
+let found
+let initialNote = ''
+let counter = 0
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
@@ -91,6 +97,23 @@ io
     })
     socket.on("message", (payload) => {
       console.log(payload)
+      rawPayLoad = payload;
+      found = rawPayLoad.match(regex1);
+      found = found[0].match(regex2);
+      console.log(found[0]);
+      if(initialNote === found[0]){
+        counter++
+        if(counter === 4){
+          console.log('Se mantuvo la nota musical: ')
+          console.log(found[0])
+          //socket.to(payload.id_player).emit("message", payload.data)
+          counter = 0
+        }
+      }
+      else{
+        initialNote = found[0]
+      }
+      
       //socket.to(payload.id_player).emit("message", payload.data)
 
     })
