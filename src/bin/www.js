@@ -107,7 +107,7 @@ io
         if(counter === 60){
           console.log('Se mantuvo la nota musical: ')
           console.log(found[0])
-          //socket.to(payload.id_player).emit("message", payload.data)
+          socket.to(1).emit("message", {message: "1"})
           counter = 0
         }
       }
