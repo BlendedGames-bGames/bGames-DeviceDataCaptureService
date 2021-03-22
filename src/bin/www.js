@@ -94,6 +94,7 @@ io
     socket.emit("welcome", {message:"Bienvenido captura de datos en tiempo real!"})
 
     socket.on("joinRoom", (id_player) => {
+      console.log(id_player)
       socket.join(id_player)
       return socket.emit("success", {message:"Se a unido a su room personal"} )
     })
