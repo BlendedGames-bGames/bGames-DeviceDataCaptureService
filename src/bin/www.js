@@ -75,6 +75,7 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 let rawPayLoad
+let properJson
 let regex1 =  /\(.*\)/g;
 let regex2 =   /[CDEFGAB]+\#?/g
 let found
@@ -92,13 +93,14 @@ io
     console.log("New player")
     socket.emit("welcome", {message:"Bienvenido captura de datos en tiempo real!"})
 
-    socket.on("joinRoom", (room) => {
-      socket.join(room)
+    socket.on("joinRoom", (id_player) => {
+      socket.join(id_player)
       return socket.emit("success", {message:"Se a unido a su room personal"} )
     })
     socket.on("message", (payload) => {
       console.log(payload)
-      rawPayLoad = payload;
+      properJson = JSON.parse(payload)
+      rawPayLoad = properJson.data;
       found = rawPayLoad.match(regex1);
       found = found[0].match(regex2);
       bool = found === null ? false : true;
@@ -107,7 +109,7 @@ io
         if(counter === 60){
           console.log('Se mantuvo la nota musical: ')
           console.log(found[0])
-          socket.to(1).emit("message", {message: "1"})
+          socket.to(properJson.id_player).emit("message", {message: "1"})
           counter = 0
         }
       }
