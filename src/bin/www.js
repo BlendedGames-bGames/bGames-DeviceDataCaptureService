@@ -107,7 +107,7 @@ io
       bool = found === null ? false : true;
       if(bool && initialNote === found[0] && found[0] !== 'F' && found[0] !== 'F#' && found[0] !== 'G'){
         counter++
-        if(counter === 60){
+        if(counter === 40){
           console.log('Se mantuvo la nota musical: ')
           console.log(found[0])
           socket.to(properJson.id_player).emit("message", {message: "1"})
